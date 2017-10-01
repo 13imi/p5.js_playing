@@ -11,12 +11,17 @@ var centx = 250,
 var cplx = devise.width / 2, cply = devise.height / 2;
 var cpx = 150, cpy = 150;
 var c, c2;
+var c2b = 222;
 
 
 function setup() {
     createCanvas(devise.width, devise.height);
-    c = color(255, 31, 150);
-    c2 = color(90, 254, 48);
+    // c = color(255, 31, 150);
+    // c2 = color(90, 254, 48);
+    c = color(94, 186, 186);
+    c2 = color(68, 222, 222);
+
+    img = loadImage("img/coelacanth.png");
 
     background(255);
     smooth();
@@ -24,6 +29,8 @@ function setup() {
 
 function draw() {
     splatoon();
+    var imgWidth = devise.width * 3 / 4;
+    image(img, devise.width / 8, (devise.height / 2) - (imgWidth / 2),  imgWidth, imgWidth);
 }
 
 function mouseMoved() {
@@ -46,13 +53,14 @@ function splatoon() {
 
     spNoiseX += 0.05;
     spNoiseY += 0.05;
-    cpx = cplx + (noise(spNoiseX) * 200) - 100;
-    cpy = cply + (noise(spNoiseY) * 200) - 100;
+    cpx = cplx + (noise(spNoiseX) * 215) - 100;
+    cpy = cply + (noise(spNoiseY) * 215) - 100;
     if (cpx < -100 || cpy < -100 || cpx > devise.width + 100 || cpy > devise.height + 100) {
         cpx = devise.width / random(3);
         cpy = devise.height / random(3);
     }
     drawCircle(cpx, cpy, c2);
+    c2 = color(68, random(222), 222);
 
     cplx = cpx;
     cply = cpy;
@@ -90,7 +98,6 @@ function drawCircle(centx, centy, color) {
 }
 
 function inkSplash(thisRadius, rad) {
-
 }
 
 function inkCircle() {
